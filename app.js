@@ -60,6 +60,7 @@ function clearFood() {
 
     context.fillStyle = '#212121';
     // context.roundRect(foodX, foodY, UNIT, UNIT, [50, 50, 50, 50]);
+    // context.roundRect(foodX, foodY, UNIT, UNIT);
     context.fill();
     context.fillRect(foodX, foodY, UNIT, UNIT)
 
