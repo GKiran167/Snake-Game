@@ -82,6 +82,7 @@ h2{
         justify-content: center;
         width: 100vw;
         visibility: visible;
+        margin-bottom: 100px;
     }
     
     .controller img{
@@ -91,7 +92,7 @@ h2{
         background-color: #b29b6e;
         padding: 5px;
         margin: 10px;
-        border-radius: 5px;
+        border-radius: 10px;
     }
 
     .controller img:hover{
@@ -106,7 +107,7 @@ h2{
     }
     
     .ar-left{
-        padding-right: 90px;
+        padding-right: 110px;
     }
 
     #gameboard{
