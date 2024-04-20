@@ -15,6 +15,27 @@
     <div class="container">
         <canvas id="gameboard" width="500px" height="500px"></canvas>
         <div id="score">Score : <span id="scoreVal"></span></div>
+        <div>
+            <img src="./assets/restart.png" alt="Restart" id="restart-btn" class="restart-btn-default" onclick=reStartGame() />
+        </div>
+        <div class="controller">
+            <div class="ar-up">
+                <img src="./assets/arrow-up.png" alt="arrow-up" onclick=arrowUp() />
+            </div>
+            <div class="ar-mid">
+                <div class="ar-left">
+                    <img src="./assets/arrow-left.png" alt="arrow-left" onclick=arrowLeft() />
+                </div>
+                <div class="ar-right">
+                    <img src="./assets/arrow-right.png" alt="arrow-right" onclick=arrowRight() />
+                </div>
+            </div>
+            <div>
+                <div class="ar-downn">
+                    <img src="./assets/arrow-down.png" alt="arrow-down" onclick=arrowDown() />
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>

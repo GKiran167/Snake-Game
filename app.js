@@ -1,6 +1,7 @@
 const gameboard = document.querySelector('#gameboard');
 const scoreVal = document.querySelector('#scoreVal');
 const context = gameboard.getContext('2d');
+const reStartBtn = document.getElementById('restart-btn');
 
 const WIDTH = gameboard.width;
 const HEIGHT = gameboard.height;
@@ -38,17 +39,17 @@ function startGame() {
 
 
 function createFood() {
-    
+
     foodX = Math.floor(Math.random() * (WIDTH / UNIT)) * UNIT
     foodY = Math.floor(Math.random() * HEIGHT / UNIT) * UNIT
 
-    console.log(foodX, foodY)
+    // console.log(foodX, foodY)
 
 }
 
 function displayFood() {
     // clearBorad();
-    
+
     context.fillStyle = 'red';
     context.fillRect(foodX, foodY, UNIT, UNIT)
     // context.roundRect(foodX, foodY, UNIT, UNIT, [50, 50, 50, 50]);
@@ -89,10 +90,10 @@ function moveSnake() {
 
     // context.fillStyle='red'
     // context.fillRect(snake[0].x, snake[0].y, UNIT, UNIT)
-    
+
     if (snake[0].x == foodX && snake[0].y == foodY) {
 
-        
+
         createFood();
         score++;
         scoreVal.textContent = score
@@ -107,10 +108,10 @@ function moveSnake() {
             Speed = 110;
         }
     }
-    else{
+    else {
         snake.pop();
     }
-        
+
 }
 
 function clearBorad() {
@@ -127,7 +128,7 @@ function nextTick() {
         setTimeout(() => {
             clearBorad();
             displayFood();
-            
+
             moveSnake();
             drawSnake();
             checkGameOver();
@@ -144,6 +145,8 @@ function nextTick() {
         context.textAlign = "center"
         context.fillStyle = "white"
         context.fillText("Game Over !!", WIDTH / 2, HEIGHT / 2);
+        // reStartStyle();
+        reStartBtn.setAttribute('id', 'restart-display');
     }
 
 }
@@ -160,19 +163,19 @@ function keyPress(event) {
         nextTick();
     }
     switch (true) {
-        case (event.keyCode == LEFT && xVel != UNIT):
+        case (event.keyCode == LEFT || event == LEFT  && xVel != UNIT):
             xVel = -UNIT;
             yVel = 0;
             break;
-        case (event.keyCode == UP && yVel != UNIT):
+        case (event.keyCode == UP || event == UP && yVel != UNIT):
             yVel = -UNIT;
             xVel = 0;
             break;
-        case (event.keyCode == RIGHT && xVel != -UNIT):
+        case (event.keyCode == RIGHT || event == RIGHT && xVel != -UNIT):
             xVel = UNIT;
             yVel = 0;
             break;
-        case (event.keyCode == DOWNN && yVel != -UNIT):
+        case (event.keyCode == DOWNN || event == DOWNN && yVel != -UNIT):
             yVel = UNIT;
             xVel = 0;
             break;
@@ -195,4 +198,50 @@ function checkGameOver() {
             active = false;
             break;
     }
+}
+
+// function reStartStyle() {
+//     // reStartBtn.style.display = 'block';
+   
+// }
+
+// reStartBtn.addEventListener('Onclick',reStart);
+
+function reStartGame() {
+    reStartBtn.removeAttribute('id');
+    snake = [
+        { x: UNIT * 3, y: 0 },
+        { x: UNIT * 2, y: 0 },
+        { x: UNIT, y: 0 },
+        { x: 0, y: 0 }
+    ]
+
+
+    active = true;
+    started = false;
+    playPasue = true;
+    Speed = 200;
+
+    score = 0;
+
+    clearBorad();
+    startGame();
+  
+    // reStartBtn.removeAttribute('id','restart-display');
+}
+
+function arrowUp(){
+    keyPress(38);
+}
+
+function arrowLeft(){
+    keyPress(37);
+}
+
+function arrowRight(){
+    keyPress(39);
+}
+
+function arrowDown(){
+    keyPress(40);
 }
